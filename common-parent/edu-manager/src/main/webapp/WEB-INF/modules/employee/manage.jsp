@@ -16,12 +16,12 @@
 						<li class="nav_current">
 							<a href="#" class="subNavigation" id="A001010"
                                data-name="common_iframe" onclick="Common.switchNavigation(this);"
-							   data-url="${pageContext.request.contextPath}/user/info.do">用户信息</a>
+							   data-url="${pageContext.request.contextPath}/employee/info.do">员工信息</a>
 						</li>
 						<li class="nav_current">
 							<a href="#" class="subNavigation" id="A001011"
 							   data-name="common_iframe" onclick="Common.switchNavigation(this);"
-							   data-url="${pageContext.request.contextPath}/user/info.do">其它信息</a>
+							   data-url="${pageContext.request.contextPath}/employee/info.do">工资信息</a>
 						</li>
 
                     </ul>

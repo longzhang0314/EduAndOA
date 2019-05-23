@@ -1,7 +1,7 @@
 package com.zl.edu.web.controller;
 
-import com.zl.edu.model.User;
 import com.zl.edu.service.IUserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -24,17 +24,19 @@ public class UserController {
 
     @RequestMapping("manage")
     public String manage(){
-        return "User/UserManage";
+        System.out.println("manage...");
+        return "user/manage";
     }
 
     @RequestMapping("info")
     public String info(){
-        return "User/UserInfo";
+        System.out.println("info...");
+        return "user/info";
     }
 
     @RequestMapping("edit")
     public String edit(){
-        return "User/UserEdit";
+        return "user/edit";
     }
 
 }
