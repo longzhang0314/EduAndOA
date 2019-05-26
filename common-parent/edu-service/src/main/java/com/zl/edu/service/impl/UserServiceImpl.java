@@ -11,7 +11,7 @@ import com.zl.edu.service.base.BaseServiceImpl;
 public class UserServiceImpl extends BaseServiceImpl<User> implements IUserService<User> {
     @Override
     public User findById(Integer id) {
-        return userMapper.findById(id);
+        return userMapper.selectByPrimaryKey(id);
     }
 
     @Override

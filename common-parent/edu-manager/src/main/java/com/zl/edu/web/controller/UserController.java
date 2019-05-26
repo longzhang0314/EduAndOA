@@ -1,6 +1,8 @@
 package com.zl.edu.web.controller;
 
+import com.zl.edu.model.User;
 import com.zl.edu.service.IUserService;
+import com.zl.edu.web.controller.base.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 @RequestMapping("user")
-public class UserController {
+public class UserController extends BaseController<User> {
 
 
     private IUserService userService;
@@ -22,21 +24,21 @@ public class UserController {
         return "Default";
     }
 
-    @RequestMapping("manage")
+    @RequestMapping(MANAGE)
     public String manage(){
         System.out.println("manage...");
-        return "user/manage";
+        return MANAGE_PAGE;
     }
 
-    @RequestMapping("info")
+    @RequestMapping(INFO)
     public String info(){
         System.out.println("info...");
-        return "user/info";
+        return INFO_PAGE;
     }
 
-    @RequestMapping("edit")
+    @RequestMapping(EDIT)
     public String edit(){
-        return "user/edit";
+        return EDIT_PAGE;
     }
 
 }
