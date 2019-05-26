@@ -93,4 +93,6 @@ public interface UserMapper {
      * @mbggenerated Sun May 26 11:27:22 CST 2019
      */
     int updateByPrimaryKey(User record);
+
+    List<User> selectByUUID(String uuid);
 }

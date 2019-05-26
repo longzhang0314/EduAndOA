@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+		 pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
 <html>
 <head>
 <title>用户信息</title>
@@ -6,22 +9,29 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/assets/Scripts/jquery-1.7.2.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/assets/Scripts/common.js"></script>
 <script type="text/javascript">
-	 function search(){
-	/* $("#searchUserForm1").attr("action","");
-	 $("#searchUserForm1").submit();
-	 }*/
+	 function search() {
+         // alert("chaxun1");
 
-	 $(document).ready(function(){
-		 
-	 	$("#birthday").datepicker({
-			dateFormat: 'yy-mm-dd',
-		});
+         /* $("#searchUserForm1").attr("action","");
+          $("#searchUserForm1").submit();
+          }*/
+		 var username = $('#username').val();
+         /*$(document).ready(function () {
 
-	 });
+             $("#birthday").datepicker({
+                 dateFormat: 'yy-mm-dd',
+             });
+         });*/
+		 alert("chaxun");
+         //通过鼠标点击事件去查询
+		 window.location.href = "${pageContext.request.contextPath}/user/find.do?username="+username;
+
+
+     }
 </script>
 </head>
 <body>
-	<form id="searchUserForm1" action="" method="post">
+	<form id="searchUserForm1" action="${pageContext.request.contextPath}/user/find.do" method="post">
 		<div class="condition_search">
 			<div class="search_title">
 				<h3 class="total_title">条件查询</h3>
@@ -29,41 +39,22 @@
 				<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="MainContent_labAllTotal"></span></div>
 			</div>
 
-			<div class="search_detail" style="height: 80px;">
-				<div class="search_table">
-					<table cellpadding="0" cellspacing="0" style="width: 900px">
-						<tr>
-							<td class="input_text tar">用户名：</td>
-							<td>
-								<p><input type="text" id="username" name="username" style="width: 120px;"></p>
-							</td>
-							<td class="input_text tar">性别：</td>
-							<td>
-								<p>
-									<select>
-										<option value="">男</option>
-										<option value="">女</option>
-									</select>
-								</p>
-							</td>
-							<td class="input_text tar">省份：</td>
-							<td>
-								<p><input type="text" style="width: 120px;"></p>
-							</td>
-							<td class="input_text tar">身份证：</td>
-							<td>
-								<p><input type="text" style="width: 120px;"></p>
-							</td>
-						</tr>
-						<tr>
-							<td class="input_text tar">生日：</td>
-							<td colspan="7"><p><input type="text" id="birthday" style="width:120px;" readonly="readonly"></p></td>
 
-						</tr>
-					</table>
+
+				<div class="search_detail" style="height: 80px;">
+					<div class="search_table">
+						<table cellpadding="0" cellspacing="0" style="width: 900px">
+							<tr>
+								<td class="input_text tar">用户名：</td>
+								<td>
+									<p><input type="text" id="username" name="username" style="width: 120px;"></p>
+								</td>
+							</tr>
+						</table>
+					</div>
+					<input type="button" onclick="search();" class="search_btn" />
 				</div>
-				<input type="button" onclick="search();" class="search_btn" />
-			</div>
+
 			<div class="edit">
 				<h3 class="total_title">查询结果</h3>
 				<ul>
@@ -73,7 +64,7 @@
 				</ul>
 			</div>
 		</div>
-		
+
 		<!--这里是表格数据-->
 		<div class="total_table rel">
 			<table border="0" cellspacing="0" cellpadding="0"
@@ -82,13 +73,9 @@
 					<tr>
 						<td style="width: 80px; text-align: center;"><p>用户名</p></td>
 						<td style="width: 100px"><p>邮箱</p></td>
-						<td style="width: 80px"><p>QQ</p></td>
-						<td style="width: 80px"><p>手机号码</p></td>
-						<td style="width: 100px"><p>支付宝</p></td>
 						<td style="width: 80px"><p>姓名</p></td>
 						<td style="width: 80px"><p>总收入</p></td>
-						<td style="width: 80px"><p>余额</p></td>
-						<td style="width: 100px"><p>注册日期</p></td>
+
 						<td class="total_table_contral" style="width: 210px"><p>操作</p></td>
 					</tr>
 				</thead>
@@ -98,47 +85,30 @@
 					style="width: 100%; background-color: #FFF;">
 
 					<tbody>
-							<tr onclick="Common.switchLine(this,event);">
-								<td style="width: 80px; text-align: center;"><p><span >gyf</span></p></td>
-								<td style="width: 100px; text-align: center;"><p><span >gyf@qq.com</span></p></td>
-								<td style="width: 80px; text-align: center;"><p><span >qq</span></p></td>
-								<td style="width: 80px; text-align: center;"><p><span >tel</span></p></td>
-								<td style="width: 100px; text-align: center;"><p><span >payAccount</span></p></td>
-								<td style="width: 80px; text-align: center;"><p><span >AA</span></p></td>
-								<td style="width: 80px; text-align: center;"><p><span >amount</span></p></td>
-								<td style="width: 80px; text-align: center;"><p><span >balance</span></p></td>
-								<td style="width: 80px; text-align: center;"><p><span >BB</span></p></td>
+							<c:forEach items="${userList}" var="user">
 
-								<td class="delete" style="width: 210px; text-align: center;">
-									<p><input type="button" onclick="Common.showPage(this);" value="编辑" 
-									data-url="./UserUpdate.html" />
-									<input type="button" onclick="Common.showPage(this);" value="禁用"
-									data-url="#" />
-								</td>
-							</tr>
-							<tr onclick="Common.switchLine(this,event);">
-								<td style="width: 80px; text-align: center;"><p><span >gyf</span></p></td>
-								<td style="width: 100px; text-align: center;"><p><span >gyf@qq.com</span></p></td>
-								<td style="width: 80px; text-align: center;"><p><span >qq</span></p></td>
-								<td style="width: 80px; text-align: center;"><p><span >tel</span></p></td>
-								<td style="width: 100px; text-align: center;"><p><span >payAccount</span></p></td>
-								<td style="width: 80px; text-align: center;"><p><span >AA</span></p></td>
-								<td style="width: 80px; text-align: center;"><p><span >amount</span></p></td>
-								<td style="width: 80px; text-align: center;"><p><span >balance</span></p></td>
-								<td style="width: 80px; text-align: center;"><p><span >BB</span></p></td>
+								<tr onclick="Common.switchLine(this,event);">
+									<td style="width: 80px; text-align: center;"><p><span >${user.username}</span></p></td>
+									<td style="width: 100px; text-align: center;"><p><span >${user.username}@itedu.com</span></p></td>
+									<td style="width: 80px; text-align: center;"><p><span >AA</span></p></td>
+									<td style="width: 80px; text-align: center;"><p><span >amount</span></p></td>
 
-								<td class="delete" style="width: 210px; text-align: center;">
-									<p><input type="button" onclick="Common.showPage(this);" value="编辑"
-											  data-url="./UserUpdate.html" />
-										<input type="button" onclick="Common.showPage(this);" value="禁用"
-											   data-url="#" />
-								</td>
-							</tr>
+									<td class="delete" style="width: 210px; text-align: center;">
+										<p><input type="button" onclick="Common.showPage(this);" value="编辑"
+												  data-url="./UserUpdate.html" />
+											<input type="button" onclick="Common.showPage(this);" value="禁用"
+												   data-url="#" />
+									</td>
+								</tr>
+
+							</c:forEach>
+
+
 					</tbody>
 				</table>
 			</div>
 		</div>
-		
+
 		<!-- 分页查询 -->
 		<div class="page">
 			<p class="page_number">
@@ -150,7 +120,7 @@
 				<span>每页显示</span>8条记录 共20条记录
 			</p>
 		</div>
-		
+
 		<div class="specific_page tal dn" id="popupLayer">
         <!--这里删除了style属性-->
         <iframe id="childform" frameborder="0" border="0" class="iframe_layer" name="layer_iframe"></iframe>

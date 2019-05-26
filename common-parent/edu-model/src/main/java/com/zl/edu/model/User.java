@@ -128,4 +128,14 @@ public class User {
     public void setEmpId(Integer empId) {
         this.empId = empId;
     }
+
+    public Employee employee;
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
 }
